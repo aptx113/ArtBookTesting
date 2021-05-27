@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo "Running static analysis..."
 
 OUTPUT="/tmp/analysis-result"
