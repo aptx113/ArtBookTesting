@@ -6,4 +6,7 @@
     <string name="enter_artist">Enter Artist</string>
     <string name="enter_year">Enter Year</string>
     <string name="save">Save</string>
+
+    <!-- Search Art   -->
+    <string name="search_image">Search Image</string>
 </resources>
