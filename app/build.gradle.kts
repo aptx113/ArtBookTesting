@@ -111,6 +111,7 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     debugImplementation(dependencyLibs.Fragment.FRAG_TEST)
+    kaptAndroidTest(dependencyLibs.Hilt.KAPT_TEST)
     addDependencies(libraries)
     addKapt(kaptLibraries)
     addTestDependencies(testLibraries)

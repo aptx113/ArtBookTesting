@@ -4,7 +4,7 @@
 object AndroidConfig {
     const val COMPILE_SDK_VERSION = 30
 
-    const val APPLICATION_ID = "com.danteyu.studio.template"
+    const val APPLICATION_ID = "com.danteyu.studio.artbooktesting"
     const val MIN_SDK_VERSION = 24
     const val TARGET_SDK_VERSION = 30
 
