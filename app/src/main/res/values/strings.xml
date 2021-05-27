@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ArtBookTesting</string>
+
+    <!-- Art Detail   -->
+    <string name="name">Enter Name</string>
+    <string name="enter_artist">Enter Artist</string>
+    <string name="enter_year">Enter Year</string>
+    <string name="save">Save</string>
 </resources>
