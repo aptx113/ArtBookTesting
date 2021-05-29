@@ -6,22 +6,19 @@
 
     <fragment
         android:id="@+id/artFragment"
-        android:name="com.danteyu.studio.artbooktesting.ui.art.ArtFragment"
-        android:label="ArtFragment" >
+        android:name="com.danteyu.studio.artbooktesting.ui.art.ArtFragment">
         <action
             android:id="@+id/action_artFragment_to_artDetailsFragment"
             app:destination="@id/artDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/artDetailsFragment"
-        android:name="com.danteyu.studio.artbooktesting.ui.artDetails.ArtDetailsFragment"
-        android:label="ArtDetailsFragment" >
+        android:name="com.danteyu.studio.artbooktesting.ui.artDetails.ArtDetailsFragment">
         <action
             android:id="@+id/action_artDetailsFragment_to_searchArtFragment"
             app:destination="@id/searchArtFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchArtFragment"
-        android:name="com.danteyu.studio.artbooktesting.ui.searchArt.SearchArtFragment"
-        android:label="SearchArtFragment" />
+        android:name="com.danteyu.studio.artbooktesting.ui.searchArt.SearchArtFragment" />
 </navigation>
