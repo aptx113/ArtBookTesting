@@ -20,7 +20,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.danteyu.studio.artbooktesting.databinding.FragArtBinding
+import com.danteyu.studio.artbooktesting.ext.observeInLifecycle
+import kotlinx.coroutines.flow.onEach
 
 /**
  * Created by George Yu in May. 2021.
@@ -28,6 +32,7 @@ import com.danteyu.studio.artbooktesting.databinding.FragArtBinding
 class ArtFragment : Fragment() {
 
     private lateinit var viewDataBinding: FragArtBinding
+    private val viewModel: ArtViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,5 +41,17 @@ class ArtFragment : Fragment() {
     ): View {
         viewDataBinding = FragArtBinding.inflate(inflater, container, false)
         return viewDataBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewDataBinding.viewModel = viewModel
+        viewDataBinding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.navigateToArtDetailsFlow
+            .onEach {
+                findNavController().navigate(
+                    ArtFragmentDirections.actionArtFragmentToArtDetailsFragment()
+                )
+            }.observeInLifecycle(viewLifecycleOwner)
     }
 }
