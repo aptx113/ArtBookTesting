@@ -82,7 +82,7 @@ object Kotlin {
 
 object Lifecycle {
     const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${LIFECYCLE_VERSION}"
-    const val LIVEDATE = "androidx.lifecycle:lifecycle-livedata-ktx:${LIFECYCLE_VERSION}"
+    const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:${LIFECYCLE_VERSION}"
     const val VIEWMODEL_SAVEDSTATE =
         "androidx.lifecycle:lifecycle-viewmodel-savedstate:${LIFECYCLE_VERSION}"
 }
@@ -153,7 +153,7 @@ object Libraries {
         add(Fragment.FRAG_KTX)
         add(Hilt.ANDROID)
         add(Kotlin.stdlib)
-        add(Lifecycle.LIVEDATE)
+        add(Lifecycle.LIVEDATA)
         add(Lifecycle.VIEWMODEL)
         add(Lifecycle.VIEWMODEL_SAVEDSTATE)
         add(Material.MATERIAL)
