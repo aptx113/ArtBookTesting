@@ -78,6 +78,7 @@ object Hilt {
 object Kotlin {
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN_VERSION}"
     const val KOTLIN_GRADLE = "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN_VERSION}"
+    const val REFLECT = "org.jetbrains.kotlin:kotlin-reflect:${KOTLIN_VERSION}"
 }
 
 object Lifecycle {
@@ -152,6 +153,7 @@ object Libraries {
         add(DataStore.PREFS_DATASTORE)
         add(Fragment.FRAG_KTX)
         add(Hilt.ANDROID)
+        add(Kotlin.REFLECT)
         add(Kotlin.stdlib)
         add(Lifecycle.LIVEDATA)
         add(Lifecycle.VIEWMODEL)
