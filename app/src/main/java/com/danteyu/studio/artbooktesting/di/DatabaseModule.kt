@@ -18,6 +18,7 @@ package com.danteyu.studio.artbooktesting.di
 import android.content.Context
 import androidx.room.Room
 import com.danteyu.studio.artbooktesting.ART_DATABASE
+import com.danteyu.studio.artbooktesting.data.source.local.ArtDao
 import com.danteyu.studio.artbooktesting.data.source.local.ArtDatabase
 import dagger.Module
 import dagger.Provides
@@ -35,10 +36,10 @@ object DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideDatabase(@ApplicationContext context: Context) =
+    fun provideDatabase(@ApplicationContext context: Context): ArtDatabase =
         Room.databaseBuilder(context, ArtDatabase::class.java, ART_DATABASE).build()
 
     @Singleton
     @Provides
-    fun provideDao(database: ArtDatabase) = database.artDao()
+    fun provideDao(database: ArtDatabase): ArtDao = database.artDao()
 }
