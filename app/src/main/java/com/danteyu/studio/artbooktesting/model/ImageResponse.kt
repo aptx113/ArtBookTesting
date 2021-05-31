@@ -13,12 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.danteyu.studio.artbooktesting
+package com.danteyu.studio.artbooktesting.model
 
-/**
- * Created by George Yu in May. 2021.
- */
-const val ARTS_TABLE = "arts_table"
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-const val API_KEY = "21865404-42696e4364554b6225d9cf4e0"
-const val BASE_URL = "https://pixabay.com/api"
+@JsonClass(generateAdapter = true)
+data class ImageResponse(
+    @Json(name = "hits")
+    val hits: List<ImageResult>,
+    @Json(name = "total")
+    val total: Int,
+    @Json(name = "totalHits")
+    val totalHits: Int
+)
