@@ -15,11 +15,25 @@
  */
 package com.danteyu.studio.artbooktesting
 
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
+import kotlin.properties.Delegates
+
 /**
  * Created by George Yu in May. 2021.
  */
-const val ARTS_TABLE = "arts_table"
-const val ART_DATABASE = "ArtDatabase"
+@HiltAndroidApp
+class ArtApp : Application() {
 
-const val API_KEY = "21865404-42696e4364554b6225d9cf4e0"
-const val BASE_URL = "https://pixabay.com/api"
+    companion object {
+        var instance by Delegates.notNull<ArtApp>()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+    }
+}
