@@ -13,12 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.danteyu.studio.artbooktesting
+package com.danteyu.studio.artbooktesting.data.source.api
+
+import com.danteyu.studio.artbooktesting.API_KEY
+import com.danteyu.studio.artbooktesting.model.ImageResponse
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 /**
  * Created by George Yu in May. 2021.
  */
-const val ARTS_TABLE = "arts_table"
-
-const val API_KEY = "21865404-42696e4364554b6225d9cf4e0"
-const val BASE_URL = "https://pixabay.com/api"
+interface ApiService {
+    @GET("/")
+    suspend fun getImage(
+        @Query("q") searchQuery: String,
+        @Query("key") apiKey: String = API_KEY
+    ): Response<ImageResponse>
+}
