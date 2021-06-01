@@ -19,11 +19,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.danteyu.studio.artbooktesting.data.source.local.Art
 import com.danteyu.studio.artbooktesting.utils.SingleFieldDiffUtil
+import javax.inject.Inject
 
 /**
  * Created by George Yu in Jun. 2021.
  */
-class ArtAdapter : ListAdapter<Art, ArtViewHolder>(SingleFieldDiffUtil<Art> { it.id }) {
+class ArtAdapter @Inject constructor() :
+    ListAdapter<Art, ArtViewHolder>(SingleFieldDiffUtil<Art> { it.id }) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtViewHolder =
         ArtViewHolder.create(parent)

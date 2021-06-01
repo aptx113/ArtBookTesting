@@ -23,12 +23,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.danteyu.studio.artbooktesting.databinding.FragSearchArtBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * Created by George Yu in May. 2021.
  */
 @AndroidEntryPoint
-class SearchArtFragment : Fragment() {
+class SearchArtFragment @Inject constructor(private val adapter: ImageAdapter) : Fragment() {
 
     private lateinit var viewDataBinding: FragSearchArtBinding
     private val viewModel: SearchArtViewModel by viewModels()
@@ -44,5 +45,6 @@ class SearchArtFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel
+        viewDataBinding.searchRecycler.adapter = adapter
     }
 }
