@@ -20,7 +20,6 @@ import com.danteyu.studio.artbooktesting.data.source.local.Art
 import com.danteyu.studio.artbooktesting.data.source.local.ArtDao
 import com.danteyu.studio.artbooktesting.model.ImageResponse
 import com.danteyu.studio.artbooktesting.utils.Resource
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -28,7 +27,6 @@ import javax.inject.Inject
  * Created by George Yu in May. 2021.
  */
 @SuppressWarnings("TooGenericExceptionCaught")
-@ViewModelScoped
 class DefaultArtRepository @Inject constructor(
     private val apiService: ApiService,
     private val artDao: ArtDao

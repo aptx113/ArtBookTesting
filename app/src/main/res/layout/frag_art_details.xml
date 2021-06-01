@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.danteyu.studio.artbooktesting.ui.artDetails.ArtDetailsViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,6 +34,8 @@
             android:layout_marginHorizontal="@dimen/space_48"
             android:layout_marginTop="@dimen/space_24"
             android:hint="@string/name"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/art_img">
@@ -37,7 +43,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:nextFocusForward="@id/art_artist_txt_field"
+                android:text="@={viewModel.name}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -47,6 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_12"
             android:hint="@string/enter_artist"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@id/art_name_txt_field"
             app:layout_constraintStart_toStartOf="@id/art_name_txt_field"
             app:layout_constraintTop_toBottomOf="@id/art_name_txt_field">
@@ -54,7 +65,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:nextFocusForward="@id/art_year_txt_field"
+                android:text="@={viewModel.artist}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,6 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_12"
             android:hint="@string/enter_year"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="@id/art_name_txt_field"
             app:layout_constraintStart_toStartOf="@id/art_name_txt_field"
             app:layout_constraintTop_toBottomOf="@id/art_artist_txt_field">
@@ -71,7 +87,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLines="1"
+                android:text="@={viewModel.year}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton

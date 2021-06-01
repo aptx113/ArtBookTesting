@@ -24,11 +24,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.danteyu.studio.artbooktesting.databinding.FragArtBinding
 import com.danteyu.studio.artbooktesting.ext.observeInLifecycle
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 
 /**
  * Created by George Yu in May. 2021.
  */
+@AndroidEntryPoint
 class ArtFragment : Fragment() {
 
     private lateinit var viewDataBinding: FragArtBinding
