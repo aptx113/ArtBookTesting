@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="art"
+            type="com.danteyu.studio.artbooktesting.data.source.local.Art" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,6 +17,7 @@
 
         <ImageView
             android:id="@+id/art_img"
+            imgUrl="@{art.imageUrl}"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop"
@@ -26,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_12"
             android:layout_marginBottom="@dimen/space_4"
+            android:text="@{@string/name(art.name)}"
             android:textSize="28sp"
             app:layout_constraintStart_toEndOf="@id/art_img"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_4"
+            android:text="@{@string/artist(art.artist)}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/art_name_txt"
             app:layout_constraintTop_toBottomOf="@id/art_name_txt"
@@ -46,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_4"
+            android:text="@{@string/year(art.year)}"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/art_name_txt"
             app:layout_constraintTop_toBottomOf="@id/artist_name_txt"

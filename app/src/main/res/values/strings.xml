@@ -2,11 +2,16 @@
     <string name="app_name">ArtBookTesting</string>
 
     <!-- Art Detail   -->
-    <string name="name">Enter Name</string>
+    <string name="enter_name">Enter Name</string>
     <string name="enter_artist">Enter Artist</string>
     <string name="enter_year">Enter Year</string>
     <string name="save">Save</string>
 
     <!-- Search Art   -->
     <string name="search_image">Search Image</string>
+
+    <!-- Art-->
+    <string name="name">Name: %s</string>
+    <string name="artist">Artist: %s</string>
+    <string name="year">Year: %s</string>
 </resources>

@@ -35,6 +35,7 @@ class ArtFragment : Fragment() {
 
     private lateinit var viewDataBinding: FragArtBinding
     private val viewModel: ArtViewModel by viewModels()
+    private val adapter by lazy { ArtAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +49,7 @@ class ArtFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewDataBinding.viewModel = viewModel
         viewDataBinding.lifecycleOwner = viewLifecycleOwner
+        viewDataBinding.recyclerViewArts.adapter = adapter
 
         viewModel.navigateToArtDetailsFlow
             .onEach {
