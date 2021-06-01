@@ -20,14 +20,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.danteyu.studio.artbooktesting.databinding.FragArtDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Created by George Yu in May. 2021.
  */
+@AndroidEntryPoint
 class ArtDetailsFragment : Fragment() {
 
     private lateinit var viewDataBinding: FragArtDetailsBinding
+    private val viewModel: ArtDetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,5 +40,11 @@ class ArtDetailsFragment : Fragment() {
     ): View {
         viewDataBinding = FragArtDetailsBinding.inflate(inflater, container, false)
         return viewDataBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewDataBinding.lifecycleOwner = viewLifecycleOwner
+        viewDataBinding.viewModel = viewModel
+        viewModel.imageUrl = ""
     }
 }

@@ -20,14 +20,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.danteyu.studio.artbooktesting.databinding.FragSearchArtBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Created by George Yu in May. 2021.
  */
+@AndroidEntryPoint
 class SearchArtFragment : Fragment() {
 
     private lateinit var viewDataBinding: FragSearchArtBinding
+    private val viewModel: SearchArtViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,5 +40,9 @@ class SearchArtFragment : Fragment() {
     ): View {
         viewDataBinding = FragSearchArtBinding.inflate(inflater, container, false)
         return viewDataBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel
     }
 }

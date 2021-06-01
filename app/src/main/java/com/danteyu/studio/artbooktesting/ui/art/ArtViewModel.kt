@@ -17,17 +17,26 @@ package com.danteyu.studio.artbooktesting.ui.art
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danteyu.studio.artbooktesting.data.repository.ArtRepository
+import com.danteyu.studio.artbooktesting.data.source.local.Art
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Created by George Yu in May. 2021.
  */
-class ArtViewModel : ViewModel() {
+@HiltViewModel
+class ArtViewModel @Inject constructor(private val repository: ArtRepository) : ViewModel() {
+
+    val artsFlow = repository.getAllArtsFlow()
 
     private val navigateToArtDetailsChannel = Channel<Boolean>(Channel.CONFLATED)
     val navigateToArtDetailsFlow = navigateToArtDetailsChannel.receiveAsFlow()
+
+    fun deleteArt(art: Art) = viewModelScope.launch { repository.deleteArt(art) }
 
     fun onArtDetailsNavigated() = viewModelScope.launch { navigateToArtDetailsChannel.send(true) }
 }

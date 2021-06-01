@@ -13,21 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.danteyu.studio.artbooktesting.data.source.api
+package com.danteyu.studio.artbooktesting.di
 
-import com.danteyu.studio.artbooktesting.API_KEY
-import com.danteyu.studio.artbooktesting.model.ImageResponse
-import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Query
+import com.danteyu.studio.artbooktesting.data.repository.ArtRepository
+import com.danteyu.studio.artbooktesting.data.repository.DefaultArtRepository
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
 /**
- * Created by George Yu in May. 2021.
+ * Created by George Yu in Jun. 2021.
  */
-interface ApiService {
-    @GET("")
-    suspend fun getImage(
-        @Query("q") searchQuery: String,
-        @Query("key") apiKey: String = API_KEY
-    ): Response<ImageResponse>
+@InstallIn(ViewModelComponent::class)
+@Module
+abstract class RepositoryModule {
+
+    @ViewModelScoped
+    @Binds
+    abstract fun bindRepository(repository: DefaultArtRepository): ArtRepository
 }

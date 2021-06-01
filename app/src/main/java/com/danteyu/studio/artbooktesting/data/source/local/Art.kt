@@ -28,6 +28,6 @@ data class Art(
     val id: Int? = null,
     val name: String,
     val artist: String,
-    val year: Int,
+    val year: String,
     val imageUrl: String
 )
