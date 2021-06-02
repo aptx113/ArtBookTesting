@@ -4,6 +4,10 @@
 
     <data>
 
+        <variable
+            name="imageResult"
+            type="com.danteyu.studio.artbooktesting.model.ImageResult" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

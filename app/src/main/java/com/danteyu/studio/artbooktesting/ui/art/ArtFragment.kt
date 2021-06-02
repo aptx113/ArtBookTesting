@@ -26,12 +26,13 @@ import com.danteyu.studio.artbooktesting.databinding.FragArtBinding
 import com.danteyu.studio.artbooktesting.ext.observeInLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 /**
  * Created by George Yu in May. 2021.
  */
 @AndroidEntryPoint
-class ArtFragment : Fragment() {
+class ArtFragment @Inject constructor(private val adapter: ArtAdapter) : Fragment() {
 
     private lateinit var viewDataBinding: FragArtBinding
     private val viewModel: ArtViewModel by viewModels()
@@ -48,6 +49,7 @@ class ArtFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewDataBinding.viewModel = viewModel
         viewDataBinding.lifecycleOwner = viewLifecycleOwner
+        viewDataBinding.recyclerViewArts.adapter = adapter
 
         viewModel.navigateToArtDetailsFlow
             .onEach {

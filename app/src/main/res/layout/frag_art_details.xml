@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/space_48"
             android:layout_marginTop="@dimen/space_24"
-            android:hint="@string/name"
+            android:hint="@string/enter_name"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
