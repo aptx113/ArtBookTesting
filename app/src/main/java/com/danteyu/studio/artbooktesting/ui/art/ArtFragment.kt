@@ -22,6 +22,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.danteyu.studio.artbooktesting.databinding.FragArtBinding
 import com.danteyu.studio.artbooktesting.ext.observeInLifecycle
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +38,20 @@ class ArtFragment @Inject constructor(private val adapter: ArtAdapter) : Fragmen
 
     private lateinit var viewDataBinding: FragArtBinding
     private val viewModel: ArtViewModel by viewModels()
+    private val swipeCallback =
+        object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean = true
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val layoutPosition = viewHolder.layoutPosition
+                val selectedArt = adapter.currentList[layoutPosition]
+                viewModel.deleteArt(selectedArt)
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +66,13 @@ class ArtFragment @Inject constructor(private val adapter: ArtAdapter) : Fragmen
         viewDataBinding.viewModel = viewModel
         viewDataBinding.lifecycleOwner = viewLifecycleOwner
         viewDataBinding.recyclerViewArts.adapter = adapter
+
+        viewDataBinding.recyclerViewArts.adapter = adapter
+        ItemTouchHelper(swipeCallback).attachToRecyclerView(viewDataBinding.recyclerViewArts)
+
+        viewModel.artsFlow
+            .onEach { adapter.submitList(it) }
+            .observeInLifecycle(viewLifecycleOwner)
 
         viewModel.navigateToArtDetailsFlow
             .onEach {
