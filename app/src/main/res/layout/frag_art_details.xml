@@ -18,13 +18,15 @@
 
         <ImageView
             android:id="@+id/art_img"
+            imgUrl="@{viewModel.imageUrl.value}"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_marginTop="@dimen/space_16"
+            android:onClick="@{_ -> viewModel.onSearchArtNavigated()}"
+            android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/art_name_txt_field"
@@ -41,6 +43,7 @@
             app:layout_constraintTop_toBottomOf="@id/art_img">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
@@ -63,6 +66,7 @@
             app:layout_constraintTop_toBottomOf="@id/art_name_txt_field">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/artist_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
@@ -85,6 +89,7 @@
             app:layout_constraintTop_toBottomOf="@id/art_artist_txt_field">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/year_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
@@ -98,6 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_32"
+            android:onClick="@{_ -> viewModel.makeArt()}"
             android:text="@string/save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
