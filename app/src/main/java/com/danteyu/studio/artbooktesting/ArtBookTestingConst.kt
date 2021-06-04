@@ -20,6 +20,8 @@ package com.danteyu.studio.artbooktesting
  */
 const val ARTS_TABLE = "arts_table"
 const val ART_DATABASE = "ArtDatabase"
+const val SEARCH_IMAGE = "search_image"
+const val ONE_SEC = 1000L
 
 const val API_KEY = "21865404-42696e4364554b6225d9cf4e0"
-const val BASE_URL = "https://pixabay.com/api/"
+const val BASE_URL = "https://pixabay.com/"

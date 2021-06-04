@@ -19,10 +19,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.danteyu.studio.artbooktesting.ONE_SEC
+import com.danteyu.studio.artbooktesting.SEARCH_IMAGE
 import com.danteyu.studio.artbooktesting.databinding.FragSearchArtBinding
+import com.danteyu.studio.artbooktesting.ext.observeInLifecycle
+import com.danteyu.studio.artbooktesting.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -44,7 +55,45 @@ class SearchArtFragment @Inject constructor(private val adapter: ImageAdapter) :
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel
         viewDataBinding.searchRecycler.adapter = adapter
+        subscribeToCollector()
+
+        adapter.setOnItemClickListener {
+            viewModel.setSelectedImage(it)
+            findNavController().popBackStack()
+        }
+        viewModel.selectedImageFlow.onEach {
+            findNavController().previousBackStackEntry?.savedStateHandle?.set(
+                SEARCH_IMAGE,
+                it
+            )
+        }.observeInLifecycle(viewLifecycleOwner)
+
+        var job: Job? = null
+        viewDataBinding.searchEditTxt.addTextChangedListener {
+            job?.cancel()
+            job = lifecycleScope.launch {
+                delay(ONE_SEC)
+                it?.let {
+                    if (it.toString().isNotEmpty()) viewModel.searchImage(it.toString())
+                }
+            }
+        }
+    }
+
+    private fun subscribeToCollector() {
+        viewModel.imagesFlow
+            .onEach {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        it.data?.let { imageResponse ->
+                            adapter.submitList(imageResponse.hits)
+                        }
+                        viewDataBinding.progressBar.visibility = View.GONE
+                    }
+                    Status.ERROR -> viewDataBinding.progressBar.visibility = View.GONE
+                    Status.LOADING -> viewDataBinding.progressBar.visibility = View.VISIBLE
+                }
+            }.observeInLifecycle(viewLifecycleOwner)
     }
 }
