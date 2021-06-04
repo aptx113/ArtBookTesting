@@ -25,7 +25,7 @@ import retrofit2.http.Query
  * Created by George Yu in May. 2021.
  */
 interface ApiService {
-    @GET("")
+    @GET("api/")
     suspend fun getImage(
         @Query("q") searchQuery: String,
         @Query("key") apiKey: String = API_KEY

@@ -18,6 +18,7 @@ package com.danteyu.studio.artbooktesting.ui.common
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
+import com.danteyu.studio.artbooktesting.R
 
 /**
  * Created by George Yu in Jun. 2021.
@@ -30,6 +31,7 @@ object CommonBindings {
         if (url == null) return
         img.load(url) {
             crossfade(true)
+            placeholder(R.drawable.ic_launcher_background)
         }
     }
 }

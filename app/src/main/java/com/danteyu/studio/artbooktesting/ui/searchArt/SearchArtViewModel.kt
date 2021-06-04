@@ -32,7 +32,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchArtViewModel @Inject constructor(private val repository: ArtRepository) : ViewModel() {
 
-    private val _imagesFlow = MutableStateFlow<Resource<ImageResponse>>(Resource.loading(null))
+    private val _imagesFlow = MutableStateFlow<Resource<ImageResponse>>(Resource.success(null))
     val imagesFlow: StateFlow<Resource<ImageResponse>> = _imagesFlow
 
     private val _selectedImageFlow = MutableStateFlow("")

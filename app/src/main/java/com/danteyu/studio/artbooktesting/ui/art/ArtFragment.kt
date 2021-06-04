@@ -74,6 +74,13 @@ class ArtFragment @Inject constructor(private val adapter: ArtAdapter) : Fragmen
             .onEach { adapter.submitList(it) }
             .observeInLifecycle(viewLifecycleOwner)
 
+        viewDataBinding.recyclerViewArts.adapter = adapter
+        ItemTouchHelper(swipeCallback).attachToRecyclerView(viewDataBinding.recyclerViewArts)
+
+        viewModel.artsFlow
+            .onEach { adapter.submitList(it) }
+            .observeInLifecycle(viewLifecycleOwner)
+
         viewModel.navigateToArtDetailsFlow
             .onEach {
                 findNavController().navigate(
