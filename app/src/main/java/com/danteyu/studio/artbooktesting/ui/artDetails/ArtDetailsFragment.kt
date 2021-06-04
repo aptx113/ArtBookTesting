@@ -26,6 +26,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.danteyu.studio.artbooktesting.R
+import com.danteyu.studio.artbooktesting.SEARCH_IMAGE
 import com.danteyu.studio.artbooktesting.databinding.FragArtDetailsBinding
 import com.danteyu.studio.artbooktesting.ext.observeInLifecycle
 import com.danteyu.studio.artbooktesting.utils.Status
@@ -67,10 +68,13 @@ class ArtDetailsFragment : Fragment() {
             }
             .observeInLifecycle(viewLifecycleOwner)
 
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("key")
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
+            SEARCH_IMAGE
+        )
             ?.observe(viewLifecycleOwner) {
                 viewModel.setImageUrl(it)
             }
+        findNavController().currentBackStackEntry?.savedStateHandle?.remove<String>(SEARCH_IMAGE)
         viewModel.insertArtMsgFlow
             .onEach {
                 when (it.status) {

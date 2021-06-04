@@ -40,7 +40,7 @@ class ImageAdapter @Inject constructor() :
         val image = getItem(position)
         holder.bind(image)
         holder.itemView.apply {
-            setOnItemClickListener {
+            setOnClickListener {
                 onItemClickListener?.let {
                     it(image.previewURL)
                 }

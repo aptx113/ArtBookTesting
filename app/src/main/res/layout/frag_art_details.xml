@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/art_img"
-            imgUrl="@{viewModel.imageUrl.value}"
+            imgUrl="@{viewModel.imageUrl}"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_marginTop="@dimen/space_16"
