@@ -26,7 +26,7 @@ import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
 /**
- * Created by George Yu in 6月. 2021.
+ * Created by George Yu in Jun. 2021.
  */
 @ExperimentalCoroutinesApi
 class MainCoroutineRule(private val dispatcher: CoroutineDispatcher = TestCoroutineDispatcher()) :
