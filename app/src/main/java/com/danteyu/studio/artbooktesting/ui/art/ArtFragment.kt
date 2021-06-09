@@ -65,7 +65,6 @@ class ArtFragment @Inject constructor(private val adapter: ArtAdapter) : Fragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewDataBinding.viewModel = viewModel
         viewDataBinding.lifecycleOwner = viewLifecycleOwner
-        viewDataBinding.recyclerViewArts.adapter = adapter
 
         viewDataBinding.recyclerViewArts.adapter = adapter
         ItemTouchHelper(swipeCallback).attachToRecyclerView(viewDataBinding.recyclerViewArts)
