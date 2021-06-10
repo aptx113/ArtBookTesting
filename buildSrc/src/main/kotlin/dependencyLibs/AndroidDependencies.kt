@@ -21,9 +21,13 @@ object TestEx {
 
 object AndroidTestLibraries {
     val androidTestLibraries = arrayListOf<String>().apply {
+        add(Arch.CORE)
+        add(Coroutines.TESTING)
         add(Espresso.CORE)
         add(Espresso.CONTRIB)
         add(Espresso.INTENTS)
+        add(Hilt.TESTING)
+        add(Mockk.MOCKK)
         add(Navigation.NAV_TESTING)
         add(TestEx.JUNIT)
         add(TestEx.TRUTH)
