@@ -93,6 +93,10 @@ android {
         exclude("META-INF/kotlinx-metadata.kotlin_module")
         exclude("META-INF/core.kotlin_module")
         exclude("META-INF/specs.kotlin_module")
+        exclude("**/attach_hotspot_windows.dll")
+        exclude("META-INF/licenses/**")
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
     }
 
     sourceSets {
