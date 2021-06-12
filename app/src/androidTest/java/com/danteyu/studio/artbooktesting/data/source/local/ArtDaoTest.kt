@@ -16,10 +16,10 @@
 package com.danteyu.studio.artbooktesting.data.source.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
@@ -27,27 +27,31 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * Created by George Yu in Jun. 2021.
  */
 @SmallTest
 @ExperimentalCoroutinesApi
+@HiltAndroidTest
 class ArtDaoTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var db: ArtDatabase
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
+    @Inject
+    @Named("testDatabase")
+    lateinit var db: ArtDatabase
     private lateinit var dao: ArtDao
 
     @Before
     fun setup() {
-        db = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            ArtDatabase::class.java
-        ).allowMainThreadQueries().build()
-
+        hiltRule.inject()
         dao = db.artDao()
     }
 
