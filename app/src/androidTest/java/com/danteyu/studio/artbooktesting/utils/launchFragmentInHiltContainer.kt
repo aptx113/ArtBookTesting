@@ -39,7 +39,7 @@ import com.danteyu.studio.artbooktesting.R
 inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,
     @StyleRes themeResId: Int = R.style.FragmentScenarioEmptyFragmentActivityTheme,
-    factory: FragmentFactory,
+    factory: FragmentFactory? = null,
     crossinline action: T.() -> Unit = {}
 ) {
     val startActivityIntent = Intent.makeMainActivity(
@@ -53,7 +53,9 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     )
 
     ActivityScenario.launch<HiltTestActivity>(startActivityIntent).onActivity { activity ->
-        activity.supportFragmentManager.fragmentFactory = factory
+        if (factory != null) {
+            activity.supportFragmentManager.fragmentFactory = factory
+        }
         val fragment: Fragment =
             activity.supportFragmentManager.fragmentFactory.instantiate(
                 Preconditions.checkNotNull(T::class.java.classLoader),

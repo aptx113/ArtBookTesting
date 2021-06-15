@@ -17,7 +17,7 @@
         android:padding="@dimen/space_16">
 
         <ImageView
-            android:id="@+id/art_img"
+            android:id="@+id/artDetail_img"
             imgUrl="@{viewModel.imageUrl}"
             android:layout_width="300dp"
             android:layout_height="200dp"
