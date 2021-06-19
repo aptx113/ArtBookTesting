@@ -45,7 +45,7 @@ class ArtDetailsFragment : Fragment() {
 
     private lateinit var viewDataBinding: FragArtDetailsBinding
     val viewModel: ArtDetailsViewModel by viewModels()
-    var result : String? = null
+    var result: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
