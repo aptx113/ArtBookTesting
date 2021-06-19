@@ -23,6 +23,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.danteyu.studio.artbooktesting.R
@@ -43,7 +44,17 @@ import kotlinx.coroutines.flow.onEach
 class ArtDetailsFragment : Fragment() {
 
     private lateinit var viewDataBinding: FragArtDetailsBinding
-    private val viewModel: ArtDetailsViewModel by viewModels()
+    val viewModel: ArtDetailsViewModel by viewModels()
+    var result : String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setFragmentResultListener(SEARCH_IMAGE) { requestKey, bundle ->
+            result = bundle.getString(requestKey).toString()
+            viewModel.setImageUrl(result!!)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,13 +79,6 @@ class ArtDetailsFragment : Fragment() {
             }
             .observeInLifecycle(viewLifecycleOwner)
 
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
-            SEARCH_IMAGE
-        )
-            ?.observe(viewLifecycleOwner) {
-                viewModel.setImageUrl(it)
-            }
-        findNavController().currentBackStackEntry?.savedStateHandle?.remove<String>(SEARCH_IMAGE)
         viewModel.insertArtMsgFlow
             .onEach {
                 when (it.status) {

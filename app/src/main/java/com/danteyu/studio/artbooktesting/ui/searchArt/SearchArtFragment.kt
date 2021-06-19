@@ -19,8 +19,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -63,10 +65,7 @@ class SearchArtFragment @Inject constructor(private val adapter: ImageAdapter) :
             findNavController().popBackStack()
         }
         viewModel.selectedImageFlow.onEach {
-            findNavController().previousBackStackEntry?.savedStateHandle?.set(
-                SEARCH_IMAGE,
-                it
-            )
+            setFragmentResult(SEARCH_IMAGE, bundleOf(SEARCH_IMAGE to it))
         }.observeInLifecycle(viewLifecycleOwner)
 
         var job: Job? = null

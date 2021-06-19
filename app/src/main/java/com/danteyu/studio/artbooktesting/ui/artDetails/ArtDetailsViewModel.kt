@@ -30,6 +30,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
 
 /**
  * Created by George Yu in Jun. 2021.
@@ -50,7 +51,8 @@ class ArtDetailsViewModel @Inject constructor(private val repository: ArtReposit
     private val _insertArtMsgFlow = MutableStateFlow<Resource<Art>>(Resource.loading(null))
     val insertArtMsgFlow: StateFlow<Resource<Art>> = _insertArtMsgFlow
 
-    private fun insertArt(art: Art) = viewModelScope.launch { repository.insertArt(art) }
+    private fun insertArt(art: Art) =
+        viewModelScope.launch(Dispatchers.IO) { repository.insertArt(art) }
 
     fun setImageUrl(url: String) {
         _imageUrl.value = url
