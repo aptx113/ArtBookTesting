@@ -19,7 +19,8 @@ object Junit {
 }
 
 object Mockk {
-    const val MOCKK = "io.mockk:mockk:${MOCKK_VERSION}"
+    const val UNIT_TEST = "io.mockk:mockk:${MOCKK_VERSION}"
+    const val INSTRUMENTAL_TEST = "io.mockk:mockk-android:${MOCKK_VERSION}"
 }
 
 object Robolectric {
@@ -36,7 +37,7 @@ object TestLibraries {
         add(Coroutines.TESTING)
         add(Hilt.TESTING)
         add(Junit.JUNIT)
-        add(Mockk.MOCKK)
+        add(Mockk.UNIT_TEST)
         add(Robolectric.ROBO)
         add(Room.TESTING)
         add(Truth.TRUTH)

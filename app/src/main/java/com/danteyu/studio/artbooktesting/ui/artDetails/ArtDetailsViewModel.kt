@@ -24,6 +24,7 @@ import com.danteyu.studio.artbooktesting.data.repository.ArtRepository
 import com.danteyu.studio.artbooktesting.data.source.local.Art
 import com.danteyu.studio.artbooktesting.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -50,7 +51,8 @@ class ArtDetailsViewModel @Inject constructor(private val repository: ArtReposit
     private val _insertArtMsgFlow = MutableStateFlow<Resource<Art>>(Resource.loading(null))
     val insertArtMsgFlow: StateFlow<Resource<Art>> = _insertArtMsgFlow
 
-    private fun insertArt(art: Art) = viewModelScope.launch { repository.insertArt(art) }
+    private fun insertArt(art: Art) =
+        viewModelScope.launch(Dispatchers.IO) { repository.insertArt(art) }
 
     fun setImageUrl(url: String) {
         _imageUrl.value = url

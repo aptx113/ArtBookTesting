@@ -19,9 +19,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.danteyu.studio.artbooktesting.ONE_SEC
@@ -40,10 +42,10 @@ import javax.inject.Inject
  * Created by George Yu in May. 2021.
  */
 @AndroidEntryPoint
-class SearchArtFragment @Inject constructor(private val adapter: ImageAdapter) : Fragment() {
+class SearchArtFragment @Inject constructor(val adapter: ImageAdapter) : Fragment() {
 
     private lateinit var viewDataBinding: FragSearchArtBinding
-    private val viewModel: SearchArtViewModel by viewModels()
+    lateinit var viewModel: SearchArtViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +57,10 @@ class SearchArtFragment @Inject constructor(private val adapter: ImageAdapter) :
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity()).get(SearchArtViewModel::class.java)
+
         viewDataBinding.searchRecycler.adapter = adapter
         subscribeToCollector()
 
@@ -63,10 +69,7 @@ class SearchArtFragment @Inject constructor(private val adapter: ImageAdapter) :
             findNavController().popBackStack()
         }
         viewModel.selectedImageFlow.onEach {
-            findNavController().previousBackStackEntry?.savedStateHandle?.set(
-                SEARCH_IMAGE,
-                it
-            )
+            setFragmentResult(SEARCH_IMAGE, bundleOf(SEARCH_IMAGE to it))
         }.observeInLifecycle(viewLifecycleOwner)
 
         var job: Job? = null
