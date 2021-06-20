@@ -15,9 +15,17 @@
  */
 package com.danteyu.studio.artbooktesting.data.mock
 
+import com.danteyu.studio.artbooktesting.data.source.local.Art
 import com.danteyu.studio.artbooktesting.model.ImageResponse
 
 /**
  * Created by George Yu in Jun. 2021.
  */
 val mockImageResponse by lazy { ImageResponse(listOf(), 0, 0) }
+
+val mockArts: List<Art> by lazy {
+    listOf(
+        Art(1, "", "", "", ""),
+        Art(2, "", "", "", "")
+    )
+}
