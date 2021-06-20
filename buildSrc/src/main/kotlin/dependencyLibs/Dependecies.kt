@@ -107,6 +107,7 @@ object Navigation {
 
 object OkHttp3 {
     const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${OKHTTP3_VERSION}"
+    const val MOCKWEBSERVER = "com.squareup.okhttp3:mockwebserver:${OKHTTP3_VERSION}"
 }
 
 object Paging {
