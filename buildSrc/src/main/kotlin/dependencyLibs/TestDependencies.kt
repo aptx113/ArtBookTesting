@@ -38,6 +38,7 @@ object TestLibraries {
         add(Hilt.TESTING)
         add(Junit.JUNIT)
         add(Mockk.UNIT_TEST)
+        add(OkHttp3.MOCKWEBSERVER)
         add(Robolectric.ROBO)
         add(Room.TESTING)
         add(Truth.TRUTH)
