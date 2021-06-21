@@ -34,7 +34,7 @@ import java.nio.charset.StandardCharsets
  * Created by George Yu in Jun. 2021.
  */
 @RunWith(JUnit4::class)
-class ApiAbstract<T> {
+open class ApiAbstract<T> {
 
     lateinit var mockWebServer: MockWebServer
 
