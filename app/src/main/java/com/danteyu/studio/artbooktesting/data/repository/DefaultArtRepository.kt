@@ -19,6 +19,8 @@ import com.danteyu.studio.artbooktesting.data.source.api.ApiService
 import com.danteyu.studio.artbooktesting.data.source.local.Art
 import com.danteyu.studio.artbooktesting.data.source.local.ArtDao
 import com.danteyu.studio.artbooktesting.model.ImageResponse
+import com.danteyu.studio.artbooktesting.utils.EspressoIdlingResource
+import com.danteyu.studio.artbooktesting.utils.EspressoUriIdlingResource
 import com.danteyu.studio.artbooktesting.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -44,12 +46,17 @@ class DefaultArtRepository @Inject constructor(
 
     override suspend fun getImage(searchQuery: String): Resource<ImageResponse> {
         return try {
+            EspressoUriIdlingResource.beginLoad()
+            EspressoIdlingResource.busy()
             val response = apiService.getImage(searchQuery)
             if (response.isSuccessful) response.body()?.let { Resource.success(it) }
                 ?: Resource.error("Error", null)
             else Resource.error("Error", null)
         } catch (e: Exception) {
             Resource.error("No Data, ${e.message}", null)
+        } finally {
+            EspressoUriIdlingResource.endLoad()
+            EspressoIdlingResource.idle()
         }
     }
 }

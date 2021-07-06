@@ -27,7 +27,7 @@ import androidx.test.filters.MediumTest
 import com.danteyu.studio.artbooktesting.R
 import com.danteyu.studio.artbooktesting.SEARCH_IMAGE
 import com.danteyu.studio.artbooktesting.data.mock.mockImageResult
-import com.danteyu.studio.artbooktesting.data.respository.FakeArtRepositoryAndroid
+import com.danteyu.studio.artbooktesting.data.repository.FakeArtRepository
 import com.danteyu.studio.artbooktesting.factory.ArtFragmentFactory
 import com.danteyu.studio.artbooktesting.utils.launchFragmentInHiltContainer
 import com.google.common.truth.Truth
@@ -70,7 +70,7 @@ class SearchArtFragmentTest {
 
     @Test
     fun testSelectImage() = runBlockingTest {
-        val testViewModel = SearchArtViewModel(FakeArtRepositoryAndroid())
+        val testViewModel = SearchArtViewModel(FakeArtRepository())
 
         launchFragmentInHiltContainer<SearchArtFragment>(
             factory = fragmentFactory

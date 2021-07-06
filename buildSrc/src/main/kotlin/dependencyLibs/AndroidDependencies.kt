@@ -11,6 +11,7 @@ import dependencyVersions.AndroidTestDependencyVersions.TEST_EXT_VERSION
 object Espresso {
     const val CORE = "androidx.test.espresso:espresso-core:${ESPRESSO_VERSION}"
     const val CONTRIB = "androidx.test.espresso:espresso-contrib:${ESPRESSO_VERSION}"
+    const val IDLING = "androidx.test.espresso.idling:idling-net:${ESPRESSO_VERSION}"
     const val INTENTS = "androidx.test.espresso:espresso-intents:${ESPRESSO_VERSION}"
 }
 
@@ -25,6 +26,7 @@ object AndroidTestLibraries {
         add(Coroutines.TESTING)
         add(Espresso.CORE)
         add(Espresso.CONTRIB)
+        add(Espresso.IDLING)
         add(Espresso.INTENTS)
         add(Hilt.TESTING)
         add(Mockk.UNIT_TEST)
