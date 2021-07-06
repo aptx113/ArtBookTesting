@@ -152,6 +152,7 @@ object Libraries {
         add(Coroutines.ANDROID)
         add(Coroutines.CORE)
         add(DataStore.PREFS_DATASTORE)
+        add(Espresso.IDLING)
         add(Fragment.FRAG_KTX)
         add(Hilt.ANDROID)
         add(Kotlin.REFLECT)

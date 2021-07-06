@@ -27,7 +27,7 @@ import androidx.test.filters.MediumTest
 import com.danteyu.studio.artbooktesting.R
 import com.danteyu.studio.artbooktesting.SEARCH_IMAGE
 import com.danteyu.studio.artbooktesting.data.mock.mockImageResult
-import com.danteyu.studio.artbooktesting.data.respository.FakeArtRepositoryAndroid
+import com.danteyu.studio.artbooktesting.data.repository.FakeArtRepository
 import com.danteyu.studio.artbooktesting.factory.ArtFragmentFactory
 import com.danteyu.studio.artbooktesting.utils.launchFragmentInHiltContainer
 import com.google.common.truth.Truth
@@ -35,13 +35,13 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.mockk.mockk
 import io.mockk.verify
+import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import javax.inject.Inject
 
 /**
  * Created by George Yu in Jun. 2021.
@@ -70,7 +70,7 @@ class SearchArtFragmentTest {
 
     @Test
     fun testSelectImage() = runBlockingTest {
-        val testViewModel = SearchArtViewModel(FakeArtRepositoryAndroid())
+        val testViewModel = SearchArtViewModel(FakeArtRepository())
 
         launchFragmentInHiltContainer<SearchArtFragment>(
             factory = fragmentFactory

@@ -13,39 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.danteyu.studio.artbooktesting.data.mock
+package com.danteyu.studio.artbooktesting.utils
 
-import com.danteyu.studio.artbooktesting.model.ImageResponse
-import com.danteyu.studio.artbooktesting.model.ImageResult
+import androidx.test.espresso.idling.net.UriIdlingResource
+import com.danteyu.studio.artbooktesting.BASE_URL
 
 /**
  * Created by George Yu in Jun. 2021.
  */
-val mockImageResponseAndroid by lazy { ImageResponse(listOf(), 0, 0) }
+object EspressoUriIdlingResource {
 
-val mockImageResult by lazy {
-    ImageResult(
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        "",
-        0,
-        "",
-        0,
-        "dante.com",
-        0,
-        "",
-        "",
-        "",
-        0,
-        "",
-        0,
-        0,
-        "",
-        0
-    )
+    private const val RESOURCE = "DATA_LOADED"
+    private const val TIMEOUT_MS = 5000L
+
+    @JvmField
+    val uriIdlingResource = UriIdlingResource(RESOURCE, TIMEOUT_MS)
+
+    fun beginLoad() {
+        uriIdlingResource.beginLoad(BASE_URL)
+    }
+
+    fun endLoad() {
+        uriIdlingResource.endLoad(BASE_URL)
+    }
 }

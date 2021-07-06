@@ -100,14 +100,18 @@ android {
     }
 
     sourceSets {
+        val sharedTestDir = "src/test-shared/java"
         getByName("main") {
             java.srcDir("src/main/kotlin")
         }
         getByName("test") {
             java.srcDir("src/test/kotlin")
+            java.srcDir(sharedTestDir)
+            resources.srcDir("src/test/resources")
         }
         getByName("androidTest") {
             java.srcDir("src/androidTest/kotlin")
+            java.srcDir(sharedTestDir)
         }
     }
 }
